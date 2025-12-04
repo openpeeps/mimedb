@@ -1,0 +1,21 @@
+nimTitle	mimedb	mimedb.html	module mimedb		0
+nim	mimeSourceNone	mimedb.html#mimeSourceNone	MimeSource.mimeSourceNone		11
+nim	mimeSourceApache	mimedb.html#mimeSourceApache	MimeSource.mimeSourceApache		11
+nim	mimeSourceIana	mimedb.html#mimeSourceIana	MimeSource.mimeSourceIana		11
+nim	mimeSourceNginx	mimedb.html#mimeSourceNginx	MimeSource.mimeSourceNginx		11
+nim	MimeSource	mimedb.html#MimeSource	enum MimeSource		11
+nim	Mime	mimedb.html#Mime	type Mime		18
+nim	ContentType	mimedb.html#ContentType	type ContentType		29
+nim	MimeDatabaseStorage	mimedb.html#MimeDatabaseStorage	type MimeDatabaseStorage		32
+nim	MimeDBException	mimedb.html#MimeDBException	object MimeDBException		37
+nim	MimeDB	mimedb.html#MimeDB	var MimeDB		40
+nim	initMimeDatabase	mimedb.html#initMimeDatabase,sinkstring	proc initMimeDatabase(data: sink string)		45
+nim	initDatabase	mimedb.html#initDatabase.m	macro initDatabase()		57
+nim	isExtension	mimedb.html#isExtension,string	proc isExtension(ext: string): bool		67
+nim	hasMimeType	mimedb.html#hasMimeType,string	proc hasMimeType(mimeType: string): bool		71
+nim	getMimeType	mimedb.html#getMimeType,string	proc getMimeType(ext: string): Option[string]		75
+nim	getMimeInfo	mimedb.html#getMimeInfo,string	proc getMimeInfo(mimeType: string): Option[Mime]		82
+nim	isCompressible	mimedb.html#isCompressible,Option[Mime]	proc isCompressible(mime: Option[Mime]): bool		89
+nim	getExtensions	mimedb.html#getExtensions,Option[Mime]	proc getExtensions(mime: Option[Mime]): Option[seq[string]]		96
+nim	hasExtension	mimedb.html#hasExtension,Option[Mime],string	proc hasExtension(mime: Option[Mime]; ext: string): bool		103
+nim	getSource	mimedb.html#getSource,Option[Mime]	proc getSource(mime: Option[Mime]): MimeSource		110
