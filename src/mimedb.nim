@@ -58,7 +58,6 @@ macro initDatabase*() =
   ## Loads the MIME database from a JSON file at runtime.
   ## This macro reads the JSON file at compile-time. At runtime,
   ## is parsed and populates the `MimeDatabase` and `MimeDatabaseExtensions` tables.
-  echo "?"
   const jsonData = staticRead(currentSourcePath().parentDir / "mimedb" / "db.json")
   result = newStmtList()
   add result, quote do:
@@ -76,36 +75,26 @@ proc getMimeType*(ext: string): Option[string] =
   ## Returns the MIME type for a given file extension, if it exists.
   if MimeDB.extensions.hasKey(ext):
     return some(MimeDB.extensions[ext])
-  else:
-    return none(string)
 
 proc getMimeInfo*(mimeType: string): Option[Mime] =
   ## Returns the `Mime` information for a given MIME type, if it exists.
   if MimeDB.types.hasKey(mimeType):
     return some(MimeDB.types[mimeType])
-  else:
-    return none(Mime)
 
 proc isCompressible*(mime: Option[Mime]): bool =
   ## Checks if the given MIME type is compressible.
   if mime.isSome:
     return mime.get().compressible
-  else:
-    return false
 
 proc getExtensions*(mime: Option[Mime]): Option[seq[string]] =
   ## Returns the file extensions associated with a given `Mime` type.
   if mime.get().extensions.len > 0:
     return some(mime.get().extensions)
-  else:
-    return none(seq[string])
 
 proc hasExtension*(mime: Option[Mime], ext: string): bool =
   ## Checks if the given `Mime` type has the specified file extension.
   if mime.isSome:
     return ext in mime.get().extensions
-  else:
-    return false
 
 proc getSource*(mime: Option[Mime]): MimeSource =
   ## Returns the source of the given `Mime` type.
