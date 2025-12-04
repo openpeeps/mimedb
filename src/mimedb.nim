@@ -4,7 +4,7 @@
 #          Made by Humans from OpenPeeps
 #          https://github.com/openpeeps/mimedb
 
-import std/[os, macros, tables, options, json, strutils, sequtils]
+import std/[os, macros, tables, options, json, strutils]
 import pkg/jsony
 
 type
