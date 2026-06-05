@@ -5,7 +5,7 @@
 #          https://github.com/openpeeps/mimedb
 
 import std/[os, macros, tables, options, json, strutils]
-import pkg/jsony
+import pkg/openparser/json
 
 type
   MimeSource* = enum 
