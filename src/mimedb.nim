@@ -44,7 +44,7 @@ var MimeDB*: MimeDatabaseStorage
 
 proc initMimeDatabase*(data: sink string) =
   ## Initializes the MIME database from a JSON string at runtime.
-  if MimeDB != nil: raise newException(MimeDBException, "MIME database has already been initialized.")
+  if MimeDB != nil: return
   # init the tables
   MimeDB = MimeDatabaseStorage(
     extensions: newTable[string, ContentType](),
