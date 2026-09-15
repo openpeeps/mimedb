@@ -28,7 +28,6 @@ This package is using the [mime-db](https://github.com/jshttp/mime-db) database.
 ### ❤ Contributions & Support
 - 🐛 Found a bug? [Create a new Issue](https://github.com/openpeeps/mimedb/issues)
 - 👋 Wanna help? [Fork it!](https://github.com/openpeeps/mimedb/fork)
-- 😎 [Get €20 in cloud credits from Hetzner](https://hetzner.cloud/?ref=Hm0mYGM9NxZ4)
 
 ### 🎩 License
 MIT license. [Made by Humans from OpenPeeps](https://github.com/openpeeps).<br>
