@@ -20,7 +20,55 @@
 - Lightweight and easy to use
 
 ## Examples
-Check the tests folder for usage examples.
+The database loads automatically on `import`, no setup needed.
+
+```nim
+import mimedb
+import std/options
+
+# Extension to MIME type.
+# Extensions work with or without a leading dot (case-insensitive)
+assert getMimeType("html") == some("text/html")
+assert getMimeType(".html") == some("text/html")
+assert getMimeType("PNG") == some("image/png")
+assert getMimeType(".png") == some("image/png")
+assert getMimeType("unknownext") == none(string)
+
+# Check if an extension or MIME type exists
+assert isExtension("html")
+assert isExtension(".html")
+assert hasMimeType("text/html")
+```
+
+```nim
+import mimedb
+import std/options
+
+# Get full info for a MIME type
+let info = getMimeInfo("text/html")
+assert info.isSome
+assert info.getSource() == mimeSourceIana
+assert info.isCompressible() == true
+assert info.getExtensions() == some(@["html", "htm", "shtml"])
+assert info.hasExtension("html")
+assert info.hasExtension(".html") # leading dot also works
+```
+
+```nim
+import mimedb
+import std/options
+
+let zip = getMimeInfo("application/zip")
+assert zip.isSome
+assert zip.getSource() == mimeSourceIana
+assert zip.isCompressible() == false
+assert zip.getExtensions() == some(@["zip"])
+assert zip.hasExtension(".zip")
+
+let audio = getMimeInfo("audio/mp4")
+assert audio.hasExtension("m4a")
+assert audio.hasExtension(".m4a")
+```
 
 
 This package is using the [mime-db](https://github.com/jshttp/mime-db) database.

@@ -63,9 +63,17 @@ macro initDatabase*() =
   add result, quote do:
     initMimeDatabase(`jsonData`)
 
+proc normalizeExtension*(ext: string): string =
+  ## Normalizes a file extension for database lookups.
+  ## Strips whitespace, leading dots and lowercases the result,
+  ## so `"html"`, `".html"` and `".HTML"` are all equivalent.
+  ext.strip().strip(leading = true, trailing = false, chars = {'.'}).toLowerAscii()
+
 proc isExtension*(ext: string): bool =
   ## Checks if the MIME database has an entry for the given file extension.
-  MimeDB.extensions.hasKey(ext)
+  ## Accepts extensions with or without a leading dot,
+  ## e.g. both `"html"` and `".html"` work (case-insensitive).
+  MimeDB.extensions.hasKey(ext.normalizeExtension)
 
 proc hasMimeType*(mimeType: string): bool =
   ## Checks if the MIME database has an entry for the given MIME type.
@@ -73,8 +81,11 @@ proc hasMimeType*(mimeType: string): bool =
 
 proc getMimeType*(ext: string): Option[string] =
   ## Returns the MIME type for a given file extension, if it exists.
-  if MimeDB.extensions.hasKey(ext):
-    return some(MimeDB.extensions[ext])
+  ## Accepts extensions with or without a leading dot,
+  ## e.g. both `"html"` and `".html"` work (case-insensitive).
+  let key = ext.normalizeExtension
+  if MimeDB.extensions.hasKey(key):
+    return some(MimeDB.extensions[key])
 
 proc getMimeInfo*(mimeType: string): Option[Mime] =
   ## Returns the `Mime` information for a given MIME type, if it exists.
@@ -93,8 +104,10 @@ proc getExtensions*(mime: Option[Mime]): Option[seq[string]] =
 
 proc hasExtension*(mime: Option[Mime], ext: string): bool =
   ## Checks if the given `Mime` type has the specified file extension.
+  ## Accepts extensions with or without a leading dot,
+  ## e.g. both `"zip"` and `".zip"` work (case-insensitive).
   if mime.isSome:
-    return ext in mime.get().extensions
+    return ext.normalizeExtension in mime.get().extensions
 
 proc getSource*(mime: Option[Mime]): MimeSource =
   ## Returns the source of the given `Mime` type.
