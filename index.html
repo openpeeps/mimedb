@@ -118,6 +118,10 @@
   <li><a class="reference" href="#isExtension%2Cstring" title="isExtension(ext: string): bool">isExtension(ext: string): bool</a></li>
 
 </ul>
+<ul class="simple nested-toc-section">normalizeExtension
+  <li><a class="reference" href="#normalizeExtension%2Cstring" title="normalizeExtension(ext: string): string">normalizeExtension(ext: string): string</a></li>
+
+</ul>
 
     </ul>
   </details>
@@ -238,7 +242,7 @@
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    Returns the MIME type for a given file extension, if it exists.
+    Returns the MIME type for a given file extension, if it exists. Accepts extensions with or without a leading dot, e.g. both <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;html&quot;</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;.html&quot;</span></span></tt> work (case-insensitive).
     
   </dd>
 </div>
@@ -262,7 +266,7 @@
     <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    Checks if the given <tt class="docutils literal"><span class="pre"><span class="Identifier">Mime</span></span></tt> type has the specified file extension.
+    Checks if the given <tt class="docutils literal"><span class="pre"><span class="Identifier">Mime</span></span></tt> type has the specified file extension. Accepts extensions with or without a leading dot, e.g. both <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;zip&quot;</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;.zip&quot;</span></span></tt> work (case-insensitive).
     
   </dd>
 </div>
@@ -308,7 +312,18 @@
   <dt><pre><span class="Keyword">proc</span> <a href="#isExtension%2Cstring"><span class="Identifier">isExtension</span></a><span class="Other">(</span><span class="Identifier">ext</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">bool</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    Checks if the MIME database has an entry for the given file extension.
+    Checks if the MIME database has an entry for the given file extension. Accepts extensions with or without a leading dot, e.g. both <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;html&quot;</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;.html&quot;</span></span></tt> work (case-insensitive).
+    
+  </dd>
+</div>
+
+</div>
+<div id="normalizeExtension-procs-all">
+  <div id="normalizeExtension,string">
+  <dt><pre><span class="Keyword">proc</span> <a href="#normalizeExtension%2Cstring"><span class="Identifier">normalizeExtension</span></a><span class="Other">(</span><span class="Identifier">ext</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+  <dd>
+    
+    Normalizes a file extension for database lookups. Strips whitespace, leading dots and lowercases the result, so <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;html&quot;</span></span></tt>, <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;.html&quot;</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;.HTML&quot;</span></span></tt> are all equivalent.
     
   </dd>
 </div>
@@ -341,7 +356,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2026-09-15 20:41:43 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2026-09-16 10:13:05 UTC</small>
       </div>
     </div>
   </div>
