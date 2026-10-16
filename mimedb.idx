@@ -9,14 +9,15 @@ nim	ContentType	mimedb.html#ContentType	type ContentType		29
 nim	MimeDatabaseStorage	mimedb.html#MimeDatabaseStorage	type MimeDatabaseStorage		32
 nim	MimeDBException	mimedb.html#MimeDBException	object MimeDBException		37
 nim	MimeDB	mimedb.html#MimeDB	var MimeDB		40
-nim	initMimeDatabase	mimedb.html#initMimeDatabase,sinkstring	proc initMimeDatabase(data: sink string)		45
-nim	initDatabase	mimedb.html#initDatabase.m	macro initDatabase()		57
-nim	normalizeExtension	mimedb.html#normalizeExtension,string	proc normalizeExtension(ext: string): string		66
-nim	isExtension	mimedb.html#isExtension,string	proc isExtension(ext: string): bool		72
-nim	hasMimeType	mimedb.html#hasMimeType,string	proc hasMimeType(mimeType: string): bool		78
-nim	getMimeType	mimedb.html#getMimeType,string	proc getMimeType(ext: string): Option[string]		82
-nim	getMimeInfo	mimedb.html#getMimeInfo,string	proc getMimeInfo(mimeType: string): Option[Mime]		90
-nim	isCompressible	mimedb.html#isCompressible,Option[Mime]	proc isCompressible(mime: Option[Mime]): bool		95
-nim	getExtensions	mimedb.html#getExtensions,Option[Mime]	proc getExtensions(mime: Option[Mime]): Option[seq[string]]		100
-nim	hasExtension	mimedb.html#hasExtension,Option[Mime],string	proc hasExtension(mime: Option[Mime]; ext: string): bool		105
-nim	getSource	mimedb.html#getSource,Option[Mime]	proc getSource(mime: Option[Mime]): MimeSource		112
+nim	initMimeDatabase	mimedb.html#initMimeDatabase,sinkstring	proc initMimeDatabase(data: sink string)		57
+nim	ensureDatabase	mimedb.html#ensureDatabase	proc ensureDatabase()		69
+nim	initDatabase	mimedb.html#initDatabase.m	macro initDatabase()		80
+nim	normalizeExtension	mimedb.html#normalizeExtension,string	proc normalizeExtension(ext: string): string		90
+nim	isExtension	mimedb.html#isExtension,string	proc isExtension(ext: string): bool		96
+nim	hasMimeType	mimedb.html#hasMimeType,string	proc hasMimeType(mimeType: string): bool		103
+nim	getMimeType	mimedb.html#getMimeType,string	proc getMimeType(ext: string): Option[string]		108
+nim	getMimeInfo	mimedb.html#getMimeInfo,string	proc getMimeInfo(mimeType: string): Option[Mime]		117
+nim	isCompressible	mimedb.html#isCompressible,Option[Mime]	proc isCompressible(mime: Option[Mime]): bool		123
+nim	getExtensions	mimedb.html#getExtensions,Option[Mime]	proc getExtensions(mime: Option[Mime]): Option[seq[string]]		128
+nim	hasExtension	mimedb.html#hasExtension,Option[Mime],string	proc hasExtension(mime: Option[Mime]; ext: string): bool		133
+nim	getSource	mimedb.html#getSource,Option[Mime]	proc getSource(mime: Option[Mime]): MimeSource		140
