@@ -18,6 +18,8 @@ nim	hasMimeType	mimedb.html#hasMimeType,string	proc hasMimeType(mimeType: string
 nim	getMimeType	mimedb.html#getMimeType,string	proc getMimeType(ext: string): Option[string]		108
 nim	getMimeInfo	mimedb.html#getMimeInfo,string	proc getMimeInfo(mimeType: string): Option[Mime]		117
 nim	isCompressible	mimedb.html#isCompressible,Option[Mime]	proc isCompressible(mime: Option[Mime]): bool		123
-nim	getExtensions	mimedb.html#getExtensions,Option[Mime]	proc getExtensions(mime: Option[Mime]): Option[seq[string]]		128
-nim	hasExtension	mimedb.html#hasExtension,Option[Mime],string	proc hasExtension(mime: Option[Mime]; ext: string): bool		133
-nim	getSource	mimedb.html#getSource,Option[Mime]	proc getSource(mime: Option[Mime]): MimeSource		140
+nim	isCompressibleExt	mimedb.html#isCompressibleExt,string	proc isCompressibleExt(ext: string): bool		129
+nim	isCompressibleType	mimedb.html#isCompressibleType,string	proc isCompressibleType(mimeType: string): bool		140
+nim	getExtensions	mimedb.html#getExtensions,Option[Mime]	proc getExtensions(mime: Option[Mime]): Option[seq[string]]		157
+nim	hasExtension	mimedb.html#hasExtension,Option[Mime],string	proc hasExtension(mime: Option[Mime]; ext: string): bool		162
+nim	getSource	mimedb.html#getSource,Option[Mime]	proc getSource(mime: Option[Mime]): MimeSource		169
