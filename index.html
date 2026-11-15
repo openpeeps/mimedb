@@ -344,7 +344,7 @@
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">OpenParserJsonError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    Compressibility for a file extension in one lookup pass, with no intermediate MIME-type string: <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;.HTML&quot;</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;html&quot;</span></span></tt> both work.
+    Compressibility for a file extension in one lookup pass, with no intermediate MIME-type string: <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;.HTML&quot;</span></span></tt> and <tt class="docutils literal"><span class="pre"><span class="StringLit">&quot;html&quot;</span></span></tt> both work. Already-clean values allocate nothing.
     
   </dd>
 </div>
@@ -356,7 +356,7 @@
     <span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Identifier">OpenParserJsonError</span><span class="Other">,</span> <span class="Identifier">ValueError</span><span class="Other">,</span> <span class="Identifier">KeyError</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">forbids</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
   <dd>
     
-    Compressibility for a <tt class="docutils literal"><span class="pre"><span class="Identifier">Content</span><span class="Operator">-</span><span class="Keyword">Type</span></span></tt> header value: strips parameters (<tt class="docutils literal"><span class="pre"><span class="Identifier">text</span><span class="Operator">/</span><span class="Identifier">html</span><span class="Punctuation">;</span> <span class="Identifier">charset</span><span class="Operator">=</span><span class="Identifier">utf</span><span class="Operator">-</span><span class="DecNumber">8</span></span></tt>) and matches case-insensitively, so the common already-clean value avoids any normalization copy.
+    Compressibility for a <tt class="docutils literal"><span class="pre"><span class="Identifier">Content</span><span class="Operator">-</span><span class="Keyword">Type</span></span></tt> header value: strips parameters (<tt class="docutils literal"><span class="pre"><span class="Identifier">text</span><span class="Operator">/</span><span class="Identifier">html</span><span class="Punctuation">;</span> <span class="Identifier">charset</span><span class="Operator">=</span><span class="Identifier">utf</span><span class="Operator">-</span><span class="DecNumber">8</span></span></tt>) and matches case-insensitively. The common already-clean value allocates nothing; dirty values cost one small copy.
     
   </dd>
 </div>
@@ -412,7 +412,7 @@
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2026-11-15 10:32:56 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2026-11-15 10:41:18 UTC</small>
       </div>
     </div>
   </div>
