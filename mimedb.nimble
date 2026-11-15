@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.4"
+version       = "0.1.5"
 author        = "George Lemon"
 description   = "A large Database of MIME types"
 license       = "MIT"
