@@ -22,6 +22,18 @@ test "test mimedb functionality":
   assert info2.hasExtension("zip") == true
   assert info2.isCompressible == false
 
+  assert isCompressibleExt("html") == true
+  assert isCompressibleExt(".HTML") == true
+  assert isCompressibleExt("zip") == false
+  assert isCompressibleExt("png") == false
+  assert isCompressibleExt("unknownext") == false
+  assert isCompressibleType("text/html") == true
+  assert isCompressibleType("text/html; charset=utf-8") == true
+  assert isCompressibleType("Text/HTML") == true
+  assert isCompressibleType("image/png") == false
+  assert isCompressibleType("application/zip") == false
+  assert isCompressibleType("nope/nothing") == false
+
   assert isExtension("m4a")
   assert isExtension("mp4a")
   assert isExtension("m4b")

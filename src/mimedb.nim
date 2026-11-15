@@ -124,6 +124,35 @@ proc isCompressible*(mime: Option[Mime]): bool =
   ## Checks if the given MIME type is compressible.
   if mime.isSome:
     return mime.get().compressible
+  false
+
+proc isCompressibleExt*(ext: string): bool =
+  ## Compressibility for a file extension in one lookup pass, with no
+  ## intermediate MIME-type string: `".HTML"` and `"html"` both work.
+  ensureDatabase()
+  let key = ext.normalizeExtension
+  if MimeDB.extensions.hasKey(key):
+    let mt = MimeDB.extensions[key]
+    if MimeDB.types.hasKey(mt):
+      return MimeDB.types[mt].compressible
+  false
+
+proc isCompressibleType*(mimeType: string): bool =
+  ## Compressibility for a `Content-Type` header value: strips parameters
+  ## (`text/html; charset=utf-8`) and matches case-insensitively, so the
+  ## common already-clean value avoids any normalization copy.
+  ensureDatabase()
+  var v = mimeType
+  let sc = v.find(';')
+  if sc >= 0:
+    v = v[0 ..< sc]
+  v = v.strip()
+  if MimeDB.types.hasKey(v):
+    return MimeDB.types[v].compressible
+  let lower = v.toLowerAscii()
+  if lower != v and MimeDB.types.hasKey(lower):
+    return MimeDB.types[lower].compressible
+  false
 
 proc getExtensions*(mime: Option[Mime]): Option[seq[string]] =
   ## Returns the file extensions associated with a given `Mime` type.
