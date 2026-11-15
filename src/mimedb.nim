@@ -126,11 +126,25 @@ proc isCompressible*(mime: Option[Mime]): bool =
     return mime.get().compressible
   false
 
+proc needsNormalize(ext: string): bool {.inline.} =
+  ## True when `normalizeExtension` would change `ext` (leading dot,
+  ## surrounding ASCII whitespace/control, or any uppercase). The common
+  ## already-clean value skips all copies.
+  if ext.len == 0:
+    return false
+  if ext[0] == '.':
+    return true
+  for c in ext:
+    if c <= ' ' or (c >= 'A' and c <= 'Z'):
+      return true
+  false
+
 proc isCompressibleExt*(ext: string): bool =
   ## Compressibility for a file extension in one lookup pass, with no
   ## intermediate MIME-type string: `".HTML"` and `"html"` both work.
+  ## Already-clean values allocate nothing.
   ensureDatabase()
-  let key = ext.normalizeExtension
+  let key = if needsNormalize(ext): ext.normalizeExtension else: ext
   if MimeDB.extensions.hasKey(key):
     let mt = MimeDB.extensions[key]
     if MimeDB.types.hasKey(mt):
@@ -139,20 +153,31 @@ proc isCompressibleExt*(ext: string): bool =
 
 proc isCompressibleType*(mimeType: string): bool =
   ## Compressibility for a `Content-Type` header value: strips parameters
-  ## (`text/html; charset=utf-8`) and matches case-insensitively, so the
-  ## common already-clean value avoids any normalization copy.
+  ## (`text/html; charset=utf-8`) and matches case-insensitively. The common
+  ## already-clean value allocates nothing; dirty values cost one small copy.
   ensureDatabase()
   var v = mimeType
   let sc = v.find(';')
   if sc >= 0:
     v = v[0 ..< sc]
-  v = v.strip()
-  if MimeDB.types.hasKey(v):
-    return MimeDB.types[v].compressible
-  let lower = v.toLowerAscii()
-  if lower != v and MimeDB.types.hasKey(lower):
-    return MimeDB.types[lower].compressible
-  false
+  var a = 0
+  var b = v.len
+  while a < b and v[a] <= ' ':
+    inc a
+  while b > a and v[b - 1] <= ' ':
+    dec b
+  let key = if a == 0 and b == v.len: v else: v[a ..< b]
+  if MimeDB.types.hasKey(key):
+    return MimeDB.types[key].compressible
+  var hasUpper = false
+  for c in key:
+    if c >= 'A' and c <= 'Z':
+      hasUpper = true
+      break
+  if not hasUpper:
+    return false
+  let lower = key.toLowerAscii()
+  MimeDB.types.hasKey(lower) and MimeDB.types[lower].compressible
 
 proc getExtensions*(mime: Option[Mime]): Option[seq[string]] =
   ## Returns the file extensions associated with a given `Mime` type.
